@@ -3,6 +3,7 @@ import { UserModel } from "../model/userModel.js";
 
 export const LoginMiddleware = (req, res, next) => {
   const { password, username } = req.body;
+  console.log("Login req.body:", req.body);
   UserModel.findOne({ username: username }).then((data) => {
     if (data) {
       compare(password, data.password, (err, result) => {
@@ -11,12 +12,12 @@ export const LoginMiddleware = (req, res, next) => {
           next();
         } else {
           return res
-            .status(400)
+            .status(401)
             .send({ message: "parol veya username sehvdir" });
         }
       });
     } else {
-      return res.status(400).send({ message: "parol veya username sehvdir" });
+      return res.status(401).send({ message: "parol veya username sehvdir" });
     }
   });
 };

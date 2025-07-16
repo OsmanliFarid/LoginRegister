@@ -1,16 +1,18 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-
-import { RegisterCreate } from "./Controller/Register.js";
+import cors from "cors";
+import { RegisterAll, RegisterCreate } from "./Controller/Register.js";
 import { RegisterMiddleware } from "./Middleware/Register.js";
 import { LoginMiddleware } from "./Middleware/Login.js";
 import { LoginController } from "./Controller/Login.js";
+import bodyParser from "body-parser";
 const app = express();
 dotenv.config();
 const Port = process.env.URL_PORT;
-const url = "";
-app.use(express.json());
+
+app.use(cors());
+app.use(bodyParser.json());
 app.listen(Port, () => {
   console.log(`Server http://localhost:${Port} ünvanında işləyir`);
 });
@@ -22,3 +24,7 @@ mongoose
 //post
 app.post("/api/v1/register", RegisterMiddleware, RegisterCreate);
 app.post("/api/v1/login", LoginMiddleware, LoginController);
+
+//get
+
+app.get("/api/v1/register", RegisterAll);
