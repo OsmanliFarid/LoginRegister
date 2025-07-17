@@ -30,3 +30,5 @@ app.post("/api/v1/login", LoginMiddleware, LoginController);
 app.get("/api/v1/register", RegisterAll);
 
 // delete
+
+// put
