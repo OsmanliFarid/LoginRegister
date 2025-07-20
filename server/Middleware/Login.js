@@ -17,7 +17,7 @@ export const LoginMiddleware = (req, res, next) => {
         }
       });
     } else {
-      return res.status(401).send({ message: "parol veya username sehvdi" });
+      return res.status(401).send({ message: "parol veya username sehvdir" });
     }
   });
 };
